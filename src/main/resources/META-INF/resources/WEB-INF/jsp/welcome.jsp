@@ -3,8 +3,7 @@
 		<title>Welcome Page</title>
 	</head>
 	<body>
-		<div>Welcome to LearningLand</div>
+		<div>Welcome to CodeRaider</div>
 		<div>Name: ${name}</div>
-		<div>Password: ${password }</div>
 	</body>
 </html>
