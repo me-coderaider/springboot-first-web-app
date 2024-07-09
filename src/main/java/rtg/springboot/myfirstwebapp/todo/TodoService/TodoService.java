@@ -3,6 +3,7 @@ package rtg.springboot.myfirstwebapp.todo.TodoService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
@@ -11,14 +12,30 @@ import rtg.springboot.myfirstwebapp.todo.Todo.Todo;
 @Service
 public class TodoService {
 	private static List<Todo> todos=new ArrayList<Todo>();
+	
+	private static int todosCount=0;
 
 	static {
-		todos.add(new Todo(1,"coderaider","Learn SpringBoot", LocalDate.now().plusMonths(4), false));
-		todos.add(new Todo(2,"coderaider","Learn DesignPatterns", LocalDate.now().plusMonths(5), false));
-		todos.add(new Todo(3,"coderaider","Learn Full Stack Development", LocalDate.now().plusMonths(6), false));
+		todos.add(new Todo(++todosCount,"coderaider","Learn SpringBoot", LocalDate.now().plusMonths(4), false));
+		todos.add(new Todo(++todosCount,"coderaider","Learn DesignPatterns", LocalDate.now().plusMonths(5), false));
+		todos.add(new Todo(++todosCount,"coderaider","Learn Full Stack Development", LocalDate.now().plusMonths(6), false));
 	}
 	
 	public List<Todo> findByUsername(String username){
 		return todos;
+	}
+	
+	public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
+		Todo todo=new Todo(++todosCount, username, description, targetDate, done);
+		todos.add(todo);
+	}
+	
+	public void deleteById(int id) {
+//		Predicate<? super Todo> predicate;
+		
+		//todo.getId() == id
+		// todo -> todo.getId() == id
+		Predicate<? super Todo> predicate = todo -> (todo.getId() == id);
+		todos.removeIf(predicate);
 	}
 }
