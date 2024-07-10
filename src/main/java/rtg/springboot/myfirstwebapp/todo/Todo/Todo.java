@@ -2,13 +2,19 @@ package rtg.springboot.myfirstwebapp.todo.Todo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 // we need DATABASE to store all these details
 // 1) we'll create a static List of Todos
 // 2) then, we'll shift to real database(h2, mysql)
 
+@Entity
 public class Todo {
+	@Id
+	@GeneratedValue
 	private int id;
 	private String username;
 	
